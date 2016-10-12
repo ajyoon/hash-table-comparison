@@ -41,11 +41,7 @@ ListNode* _find_node_in_hash_table(HashTable *table, int key)
   // Calculate position in array based on hash table
   int array_index = hash_to_index(key, sizeof(*table) / sizeof(*table[0]));
   // Find and return value at key
-  ListNode *current_node = *table[array_index];
-  while (current_node != NULL && current_node->key != key) {
-    current_node = current_node->next;
-  }
-  return current_node;
+  return _find_node_by_key(*table[array_index], key);
 }
 
 int fetch_from_hash_table(HashTable *table, int key)

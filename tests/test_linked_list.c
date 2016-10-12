@@ -219,6 +219,99 @@ bool test_delete_end_with_neg_1_index_and_len_1_list()
   return true;
 }
 
+
+bool test_find_node_by_key_at_head()
+{
+  ListNode* head = malloc(sizeof(ListNode));
+  ListNode* second = malloc(sizeof(ListNode));
+  ListNode* third = malloc(sizeof(ListNode));
+  head->key = 0;
+  head->value = 1;
+  head->next = second;
+  second->key = 5;
+  second->value = 6;
+  second->next = third;
+  third->key = 10;
+  third->value = 11;
+  third->next = NULL;
+
+  assert(_find_node_by_key(head, 0) == head);
+
+  free(head);
+  free(second);
+  free(third);
+  return true;
+}
+
+bool test_find_node_by_key_at_middle()
+{
+  ListNode* head = malloc(sizeof(ListNode));
+  ListNode* second = malloc(sizeof(ListNode));
+  ListNode* third = malloc(sizeof(ListNode));
+  head->key = 0;
+  head->value = 1;
+  head->next = second;
+  second->key = 5;
+  second->value = 6;
+  second->next = third;
+  third->key = 10;
+  third->value = 11;
+  third->next = NULL;
+
+  assert(_find_node_by_key(head, 5) == second);
+
+  free(head);
+  free(second);
+  free(third);
+  return true;
+}
+
+bool test_find_node_by_key_at_end()
+{
+  ListNode* head = malloc(sizeof(ListNode));
+  ListNode* second = malloc(sizeof(ListNode));
+  ListNode* third = malloc(sizeof(ListNode));
+  head->key = 0;
+  head->value = 1;
+  head->next = second;
+  second->key = 5;
+  second->value = 6;
+  second->next = third;
+  third->key = 10;
+  third->value = 11;
+  third->next = NULL;
+
+  assert(_find_node_by_key(head, 10) == third);
+
+  free(head);
+  free(second);
+  free(third);
+  return true;
+}
+
+bool test_find_node_by_key_with_invalid_key()
+{
+  ListNode* head = malloc(sizeof(ListNode));
+  ListNode* second = malloc(sizeof(ListNode));
+  ListNode* third = malloc(sizeof(ListNode));
+  head->key = 0;
+  head->value = 1;
+  head->next = second;
+  second->key = 5;
+  second->value = 6;
+  second->next = third;
+  third->key = 10;
+  third->value = 11;
+  third->next = NULL;
+
+  assert(_find_node_by_key(head, 555) == NULL);
+
+  free(head);
+  free(second);
+  free(third);
+  return true;
+}
+
 bool test_find_value_by_key_at_head()
 {
   ListNode* head = malloc(sizeof(ListNode));

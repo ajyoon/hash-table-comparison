@@ -38,6 +38,11 @@ int main()
   RUN_TEST(test_find_value_by_index_with_invalid_index);
   RUN_TEST(test_find_value_by_index_with_neg_1_index);
   RUN_TEST(test_find_value_by_index_with_neg_1_index_and_len_1);
+  RUN_TEST(test_find_node_by_key_at_head);
+  RUN_TEST(test_find_node_by_key_at_middle);
+  RUN_TEST(test_find_node_by_key_at_end);
+  RUN_TEST(test_find_node_by_key_with_invalid_key);
+
 
   printf("%d total tests run: %d passed, %d failed.\n",
          test_count, pass_count, test_count - pass_count);

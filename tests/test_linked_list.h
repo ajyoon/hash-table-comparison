@@ -26,5 +26,9 @@ bool test_find_value_by_index_at_end();
 bool test_find_value_by_index_with_invalid_index();
 bool test_find_value_by_index_with_neg_1_index();
 bool test_find_value_by_index_with_neg_1_index_and_len_1();
+bool test_find_node_by_key_at_head();
+bool test_find_node_by_key_at_middle();
+bool test_find_node_by_key_at_end();
+bool test_find_node_by_key_with_invalid_key();
 
 #endif

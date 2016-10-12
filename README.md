@@ -12,7 +12,7 @@ $ cd hash-table-comparison
 # Compile
 $ make
 # Run!
-$ ./build/hash_table
+$ ./build/main
 ```
 
 ### Testing

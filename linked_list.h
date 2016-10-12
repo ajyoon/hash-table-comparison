@@ -17,6 +17,8 @@ extern ListNode* delete_node(ListNode* head, int index);
 
 extern ListNode* delete_node_by_key(ListNode* head, int key);
 
+extern ListNode* _find_node_by_key(ListNode* head, int key);
+
 extern int find_value_by_key(ListNode* head, int key);
 
 extern int find_value_by_index(ListNode* head, int index);
