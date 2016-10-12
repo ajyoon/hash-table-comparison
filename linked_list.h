@@ -9,28 +9,16 @@ typedef struct _ListNode {
   struct _ListNode* next;
 } ListNode;
 
+extern ListNode* insert_existing(ListNode* head, int index, ListNode* insert_node);
 
+extern ListNode* insert(ListNode* head, int index, int key, int value);
 
-extern ListNode* insert_existing(ListNode* head,
-                                 int index,
-                                 ListNode* insert_node);
+extern ListNode* delete_node(ListNode* head, int index);
 
-extern ListNode* insert(ListNode* head,
-                        int index,
-                        int key,
-                        int value);
+extern ListNode* delete_node_by_key(ListNode* head, int key);
 
-extern ListNode* delete_node(ListNode* head,
-                             int index);
+extern int find_value_by_key(ListNode* head, int key);
 
-extern ListNode* delete_node_by_key(ListNode* head,
-                                    int key);
-
-extern int find_value_by_key(ListNode* head,
-                             int key);
-
-extern int find_value_by_index(ListNode* head,
-                               int index);
-
+extern int find_value_by_index(ListNode* head, int index);
 
 #endif
