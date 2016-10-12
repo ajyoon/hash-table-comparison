@@ -149,3 +149,44 @@ ListNode* delete_node_by_key(ListNode* head, int key) {
   free(delete_node);
   return head;
 }
+
+
+// Retrieve the value of the node in a linked list with a given key.
+// If no such node exists, return -1
+int find_value_by_key(ListNode* head, int key)
+{
+  ListNode* current_node = head;
+  while (1) {
+    if (current_node == NULL) {
+      return -1;
+    }
+    if (current_node->key == key) {
+      return current_node->value;
+    }
+    current_node = current_node->next;
+  }
+}
+
+// Retrieve the value of the node in a linked list at a given index.
+// if index == -1, get the value of the last item in the list.
+// if the given index is invalid, return -1.
+int find_value_by_index(ListNode* head, int index)
+{
+  ListNode* current_node = head;
+  if (index == -1) {
+    while (current_node != NULL && current_node->next != NULL) {
+      current_node = current_node->next;
+    }
+  } else{
+    for (int i = 0; i < index; i++) {
+      if (current_node == NULL) {
+        return -1;
+      }
+      current_node = current_node->next;
+    }
+  }
+  if (current_node == NULL) {
+    return -1;
+  }
+  return current_node->value;
+}

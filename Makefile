@@ -12,7 +12,7 @@ hash_table: $(MAIN_SOURCE) $(SHARED_SOURCES)
 	$(CC) $(WARNINGS) -g -o $(BUILD_DIR)/hash_table $(MAIN_SOURCE) $(SHARED_SOURCES)
 
 test: $(SHARED_SOURCES) $(TEST_SOURCES)
-	$(CC) $(WARNINGS) -g -o $(BUILD_DIR)/tests/test_runner $(SHARED_SOURCES) $(TEST_SOURCES)
+	$(CC) $(WARNINGS) -g -o $(BUILD_DIR)/tests/run_tests $(SHARED_SOURCES) $(TEST_SOURCES)
 
 clean:
 	find build/ -type f ! -name ".gitignore" -delete
