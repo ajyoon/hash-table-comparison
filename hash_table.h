@@ -12,7 +12,7 @@ typedef ListNode* HashTable[128];
 
 extern int hash_key(int key);
 
-extern int hash_to_index(int key, int table_len);
+extern int hash_to_index(HashTable *table, int key);
 
 extern bool insert_to_hash_table(HashTable *table, int key, int value);
 

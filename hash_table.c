@@ -15,21 +15,18 @@ int hash_key(int key)
 
 // Hash a key and return an index between 0 and `table_len`
 // where the key should be placed in the table array
-int hash_to_index(int key, int table_len)
+int hash_to_index(HashTable *table, int key)
 {
-  return (key % 1000) % table_len;
+  int table_size = sizeof(*table) / sizeof(*table[0]);
+  return (key % 1000) % table_size;
 }
-
-// A hash table of integers
-typedef ListNode* HashTable[128];
-
 
 // Insert a key,value pair into the hash table
 // Returns true if a collision occurred, false if not
 bool insert_to_hash_table(HashTable *table, int key, int value)
 {
   // Calculate position in array based on hash table
-  int array_index = hash_to_index(key, sizeof(*table) / sizeof(*table[0]));
+  int array_index = hash_to_index(table, key);
   // Walk to end of collision (if one exists) and insert
   bool collision_occured = (*table[array_index] != NULL);
   *table[array_index] = insert(*table[array_index], -1, key, value);
@@ -39,7 +36,7 @@ bool insert_to_hash_table(HashTable *table, int key, int value)
 ListNode* _find_node_in_hash_table(HashTable *table, int key)
 {
   // Calculate position in array based on hash table
-  int array_index = hash_to_index(key, sizeof(*table) / sizeof(*table[0]));
+  int array_index = hash_to_index(table, key);
   // Find and return value at key
   return _find_node_by_key(*table[array_index], key);
 }
@@ -57,7 +54,7 @@ int fetch_from_hash_table(HashTable *table, int key)
 bool remove_from_hash_table(HashTable *table, int key)
 {
   // Calculate position in array based on hash table
-  int array_index = hash_to_index(key, sizeof(*table) / sizeof(*table[0]));
+  int array_index = hash_to_index(table, key);
 
   *table[array_index] = delete_node_by_key(*table[array_index], key);
   return true;
