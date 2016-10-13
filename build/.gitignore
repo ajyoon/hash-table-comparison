@@ -1,4 +1,5 @@
 # Keep this directory empty
 *
-# Except this file
+# Except this file and the tests subdir
 !.gitignore
+!tests/
