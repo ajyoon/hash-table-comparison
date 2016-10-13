@@ -6,20 +6,8 @@
 
 #include "linked_list.h"
 #include "hash_table.h"
+#include "hash_functions.h"
 
-// A naive hash function
-int hash_key(int key)
-{
-  return key % 1000;
-}
-
-// Hash a key and return an index between 0 and `table_len`
-// where the key should be placed in the table array
-int hash_to_index(HashTable *table, int key)
-{
-  int table_size = sizeof(*table) / sizeof(*table[0]);
-  return (key % 1000) % table_size;
-}
 
 // Insert a key,value pair into the hash table
 // Returns true if a collision occurred, false if not
@@ -58,4 +46,18 @@ bool remove_from_hash_table(HashTable *table, int key)
 
   *table[array_index] = delete_node_by_key(*table[array_index], key);
   return true;
+}
+
+// Free the memory for an entire table, including all nodes in
+// any linked lists it contains
+void free_table_and_chains(HashTable *table)
+{
+  int table_size = sizeof(table) / sizeof(*table[0]);
+  for (int i = 0; i < table_size; i++) {
+    ListNode *chain_node = *table[0];
+    while((chain_node = delete_node(chain_node, 0)) != NULL) {
+      ;
+    }
+  }
+  free(table);
 }

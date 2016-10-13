@@ -1,7 +1,7 @@
 CC = gcc
 WARNINGS = -Wall
 MAIN_SOURCE = main.c
-SHARED_SOURCES = linked_list.h linked_list.c hash_table.h hash_table.c
+SHARED_SOURCES = linked_list.h linked_list.c hash_functions.h hash_functions.c hash_table.h hash_table.c
 BUILD_DIR = ./build
 
 TEST_SOURCE_FILENAMES = test_linked_list.h test_linked_list.c test_runner.c test_utils/utils.h test_utils/utils.c

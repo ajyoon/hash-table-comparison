@@ -1,18 +1,14 @@
 #ifndef HASH_TABLE_H
 #define HASH_TABLE_H
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 #include "linked_list.h"
 
+#define TABLE_ARRAY_LEN 128
 
-typedef ListNode* HashTable[128];
 
-extern int hash_key(int key);
-
-extern int hash_to_index(HashTable *table, int key);
+typedef ListNode* HashTable[TABLE_ARRAY_LEN];
 
 extern bool insert_to_hash_table(HashTable *table, int key, int value);
 
@@ -21,5 +17,7 @@ extern ListNode* _find_node_in_hash_table(HashTable *table, int key);
 extern int fetch_from_hash_table(HashTable *table, int key);
 
 extern bool remove_from_hash_table(HashTable *table, int key);
+
+extern void free_table_and_chains(HashTable *table);
 
 #endif

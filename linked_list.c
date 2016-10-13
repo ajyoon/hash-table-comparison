@@ -18,26 +18,29 @@ Returns:
 ListNode* insert_existing(ListNode* head, int index, ListNode* insert_node)
 {
   // Special case for inserting at index 0
-  if (index == 0 || (index == -1 && (head == NULL || head->next == NULL))) {
+  if (index == 0) {
     if (head != NULL) {
       insert_node->next = head;
     }
+    return insert_node;
+  }
+  if (index == -1 && head == NULL) {
     return insert_node;
   }
   // Seek the node immediately before the insertion point
   ListNode* current_node = head;
   if (index == -1) {
     // index of -1 means insert at the end
-    while (current_node != NULL && current_node->next != NULL) {
+    while (current_node->next != NULL) {
       current_node = current_node->next;
     }
   } else {
     for (int i = 0; i < index - 1; i++) {
       current_node = current_node->next;
     }
-  }
-  if (current_node->next != NULL) {
-    insert_node->next = current_node->next;
+    if (current_node->next != NULL) {
+      insert_node->next = current_node->next;
+    }
   }
   current_node->next = insert_node;
   return head;
