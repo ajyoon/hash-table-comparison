@@ -43,7 +43,6 @@ bool remove_from_hash_table(HashTable *table, int key)
 {
   // Calculate position in array based on hash table
   int array_index = hash_to_index(table, key);
-
   *table[array_index] = delete_node_by_key(*table[array_index], key);
   return true;
 }
@@ -60,4 +59,23 @@ void free_table_and_chains(HashTable *table)
     }
   }
   free(table);
+}
+
+// Count the number of collisions present in a table
+int count_collisions(HashTable *table)
+{
+  int table_size = sizeof(table) / sizeof(*table[0]);
+  int collision_count = 0;
+  for (int i = 0; i < table_size; i++) {
+    if (*table[i] == NULL || (*table[i])->next == NULL) {
+      // No collision here
+      continue;
+    }
+    // Collision found
+    ListNode* current_node = (*table[i]);
+    while (current_node->next != NULL) {
+      collision_count++;
+    }
+  }
+  return collision_count;
 }

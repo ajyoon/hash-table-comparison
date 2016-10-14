@@ -20,4 +20,6 @@ extern bool remove_from_hash_table(HashTable *table, int key);
 
 extern void free_table_and_chains(HashTable *table);
 
+extern int count_collisions(HashTable *table);
+
 #endif

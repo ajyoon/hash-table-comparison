@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "test_linked_list.h"
+#include "test_hash_table.h"
 
 #define INIT_TESTS()   \
   int test_count = 0;  \
@@ -42,6 +43,11 @@ int main()
   RUN_TEST(test_find_node_by_key_at_middle);
   RUN_TEST(test_find_node_by_key_at_end);
   RUN_TEST(test_find_node_by_key_with_invalid_key);
+  RUN_TEST(test_insert_to_hash_table_without_collision);
+  RUN_TEST(test_insert_to_hash_table_with_collision);
+  RUN_TEST(test_insert_to_hash_table_key_is_stored);
+  RUN_TEST(test_insert_to_hash_table_value_is_stored);
+
 
 
   printf("%d total tests run: %d passed, %d failed.\n",
