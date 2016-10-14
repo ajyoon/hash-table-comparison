@@ -119,3 +119,23 @@ bool test_measure_sparsity()
   _teardown_hash_func();
   return true;
 }
+
+bool test_free_table_and_chains()
+{
+  // Does not currently test that chain linked lists were freed!
+  HashTable *table = calloc(TABLE_ARRAY_LEN, sizeof(ListNode));
+  _setup_hash_func(hash_mock_constant_value_0);
+  insert_to_hash_table(table, 1, 2);
+  insert_to_hash_table(table, 2, 2);  // Create collision at index 0
+  insert_to_hash_table(table, 2, 2);  // Create second collision at index 0
+  _setup_hash_func(hash_mock_constant_value_1);
+  insert_to_hash_table(table, 1, 2);
+  insert_to_hash_table(table, 2, 2);  // Create collision at index 1
+
+  free_table_and_chains(table);
+  assert(table == NULL);
+
+  _teardown_hash_func();
+  return true;
+
+}

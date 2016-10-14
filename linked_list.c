@@ -61,7 +61,7 @@ ListNode* insert_existing(ListNode* head, int index, ListNode* insert_node)
 */
 ListNode* insert(ListNode* head, int index, int key, int value)
 {
-  ListNode *new_node = malloc(sizeof(ListNode));
+  ListNode *new_node = calloc(1, sizeof(ListNode));
   new_node->key = key;
   new_node->value = value;
   new_node->next = NULL;
