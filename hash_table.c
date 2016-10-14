@@ -51,11 +51,14 @@ bool remove_from_hash_table(HashTable *table, int key)
 // any linked lists it contains
 void free_table_and_chains(HashTable *table)
 {
-  int table_size = sizeof(table) / sizeof(*table[0]);
+  int table_size = sizeof(*table) / sizeof(*table[0]);
   for (int i = 0; i < table_size; i++) {
-    ListNode *chain_node = *table[0];
-    while((chain_node = delete_node(chain_node, 0)) != NULL) {
-      ;
+    ListNode *chain_node = *table[i];
+    ListNode *del_node = chain_node;
+    while (del_node != NULL) {
+      chain_node = chain_node->next;
+      free(del_node);
+      del_node = chain_node;
     }
   }
   free(table);
@@ -64,7 +67,7 @@ void free_table_and_chains(HashTable *table)
 // Count the number of collisions present in a table
 int count_collisions(HashTable *table)
 {
-  int table_size = sizeof(table) / sizeof(*table[0]);
+  int table_size = sizeof(*table) / sizeof(*table[0]);
   int collision_count = 0;
   for (int i = 0; i < table_size; i++) {
     if (*table[i] == NULL || (*table[i])->next == NULL) {
@@ -75,7 +78,22 @@ int count_collisions(HashTable *table)
     ListNode* current_node = (*table[i]);
     while (current_node->next != NULL) {
       collision_count++;
+      current_node = current_node->next;
     }
   }
   return collision_count;
+}
+
+// Return a float 0 - 1 measure of how sparse a table's primary
+// array is, where 0 is completely full and 1 is completely sparse (empty)
+float measure_sparsity(HashTable *table)
+{
+  int table_size = sizeof(*table) / sizeof(*table[0]);
+  int null_count = 0;
+  for (int i = 0; i < table_size; i++) {
+    if ((*table[i]) == NULL) {
+      null_count++;
+    }
+  }
+  return (float)null_count / (float)table_size;
 }

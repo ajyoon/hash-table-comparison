@@ -1,6 +1,8 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
+#include <math.h>
 
 #include "../linked_list.h"
 #include "../hash_table.h"
@@ -88,7 +90,6 @@ bool test_insert_to_hash_table_value_is_stored()
 
 bool test_count_collisions()
 {
-
   HashTable *table = calloc(TABLE_ARRAY_LEN, sizeof(ListNode));
   _setup_hash_func(hash_mock_constant_value_0);
   insert_to_hash_table(table, 1, 2);
@@ -96,10 +97,23 @@ bool test_count_collisions()
   _setup_hash_func(hash_mock_constant_value_1);
   insert_to_hash_table(table, 1, 2);
   insert_to_hash_table(table, 2, 2);  // Create collision at index 1
-  _setup_hash_func(hash_mock_constant_value_2);
-  insert_to_hash_table(table, 1, 2);  // No collision at index 2
 
   assert(count_collisions(table) == 2);
+
+  free_table_and_chains(table);
+  _teardown_hash_func();
+  return true;
+}
+
+bool test_measure_sparsity()
+{
+  _setup_hash_func(hash_mock_constant_value_0);
+  HashTable *table = calloc(TABLE_ARRAY_LEN, sizeof(ListNode));
+  insert_to_hash_table(table, 1, 2);
+
+  float epsilon = 0.001;  // Float comparison leeway
+  float expected = ((float)TABLE_ARRAY_LEN - 1.0) / (float)(TABLE_ARRAY_LEN);
+  assert(fabsf(measure_sparsity(table) - expected) < epsilon);
 
   free_table_and_chains(table);
   _teardown_hash_func();

@@ -47,7 +47,8 @@ int main()
   RUN_TEST(test_insert_to_hash_table_with_collision);
   RUN_TEST(test_insert_to_hash_table_key_is_stored);
   RUN_TEST(test_insert_to_hash_table_value_is_stored);
-
+  RUN_TEST(test_count_collisions);
+  RUN_TEST(test_measure_sparsity);
 
 
   printf("%d total tests run: %d passed, %d failed.\n",

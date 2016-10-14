@@ -22,4 +22,6 @@ extern void free_table_and_chains(HashTable *table);
 
 extern int count_collisions(HashTable *table);
 
+extern float measure_sparsity(HashTable *table);
+
 #endif
