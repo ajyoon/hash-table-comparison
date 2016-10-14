@@ -21,6 +21,7 @@ bool insert_to_hash_table(HashTable *table, int key, int value)
   return collision_occured;
 }
 
+// Retrieve a ListNode* from the table given a key
 ListNode* _find_node_in_hash_table(HashTable *table, int key)
 {
   // Calculate position in array based on hash table
@@ -29,6 +30,7 @@ ListNode* _find_node_in_hash_table(HashTable *table, int key)
   return _find_node_by_key(*table[array_index], key);
 }
 
+// Retrieve the value stored at `key` in a table
 int fetch_from_hash_table(HashTable *table, int key)
 {
   ListNode* found_node = _find_node_in_hash_table(table, key);
@@ -39,12 +41,12 @@ int fetch_from_hash_table(HashTable *table, int key)
   return found_node->value;
 }
 
-bool remove_from_hash_table(HashTable *table, int key)
+// Remove the value stored at `key` in a table
+void remove_from_hash_table(HashTable *table, int key)
 {
   // Calculate position in array based on hash table
   int array_index = hash_to_index(table, key);
   *table[array_index] = delete_node_by_key(*table[array_index], key);
-  return true;
 }
 
 // Free the memory for an entire table, including all nodes in

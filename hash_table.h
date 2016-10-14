@@ -16,7 +16,7 @@ extern ListNode* _find_node_in_hash_table(HashTable *table, int key);
 
 extern int fetch_from_hash_table(HashTable *table, int key);
 
-extern bool remove_from_hash_table(HashTable *table, int key);
+extern void remove_from_hash_table(HashTable *table, int key);
 
 extern void free_table_and_chains(HashTable *table);
 
