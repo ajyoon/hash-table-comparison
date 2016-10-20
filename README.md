@@ -21,15 +21,12 @@ $ ./build/main
 # Compile tests
 $ make test
 # Run them!
-$ ./build/tests/test_runner
+$ ./build/tests/run_tests
 ```
 
 #### TODO:
 
-* More fully implement linked lists for chaining
 * Revise comments in Doxygen style
-* Implement a variety of different hash functions
-* Implement a comparison between them from different
-  types of input data
-* Extract core hash table functionality into separate header/source files
-* Add tests for hash table functions
+* Implement more hash functions
+* Fix some memory leaks...
+* Add more tests for hash table functions
